@@ -1,8 +1,14 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: './src/index.coffee',
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Output Management',
+        }),
+    ],
     output: {
         filename: 'index.js',
     },
@@ -17,6 +23,10 @@ module.exports = {
               presets: ["@babel/env"],
             },
           },
+        },
+        {
+            test: /\.html?$/,
+            use: ['raw-loader'],
         },
       ],
     },
